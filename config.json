@@ -1,5 +1,7 @@
 {
     "email": "lucianobrumer5@gmail.com",
+    "license": "[![License](https://img.shields.io/github/license/lullaby6/auth-data-pack)](https://github.com/lullaby6/auth-data-pack/blob/main/LICENSE)",
+    "liname": "AGPL-3.0-or-later",
     "gdr": "gp -c 'readme'",
     "gdl": "gp -c 'license'"
 }

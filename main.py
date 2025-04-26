@@ -23,12 +23,14 @@ def main():
 
             for key, value in config.items():
                 if inputs.endswith(f"@{key}"):
-                    for _ in range(len(key) + 1):  # +1 por el '@'
+                    for _ in range(len(key) + 1):
                         keyboard.send('backspace')
 
                     keyboard.write(value)
 
                     inputs = ""
+
+                    print(f"Replaced @{key} with {value}")
 
 if __name__ == "__main__":
     main()

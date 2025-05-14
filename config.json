@@ -6,5 +6,7 @@
 	"kofi": "https://ko-fi.com/lullaby45743",
 	"paypal": "https://paypal.me/lucianobrumer",
 	"license": "https://github.com/lullaby6/namespace-data-pack/blob/main/LICENSE",
-	"topics": "mc minecraft datapack datapacks data-pack data-packs minecraft-datapack minecraft-datapacks minecraft-data-pack minecraft-data-packs "
+	"topics": "mc minecraft datapack datapacks data-pack data-packs minecraft-datapack minecraft-datapacks minecraft-data-pack minecraft-data-packs ",
+	"gpf": "gp -c 'fix'",
+	"gpr": "gp -c 'readme'"
 }

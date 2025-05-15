@@ -15,15 +15,17 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-def load_snippets(path: Path) -> dict:
-    if not path.is_file():
-        logging.warning(f"Snippets file not found: {path}")
-        (open(path, "w", encoding="utf-8")).write("{}").close()
-        return {}
+def load_snippets_file(path: Path):
+    file = open(path, "a+", encoding="utf-8")
+    return file
+
+def load_snippets(file) -> dict:
     try:
-        return json.load(path.open("r", encoding="utf-8"))
-    except json.JSONDecodeError as e:
-        logging.error(f"Error parsing JSON at {path}: {e}")
+        return json.load(file.read())
+    except json.JSONDecodeError:
+        # file.truncate(0)
+        # file.seek(0)
+        # file.write("{}")
         return {}
 
 def on_key_event(event, buffer: deque, snippets: dict):
@@ -50,17 +52,16 @@ def on_key_event(event, buffer: deque, snippets: dict):
             break
 
 def main():
-    try:
-        os.system(f"title {TITLE}")
-    except Exception:
-        pass
+    os.system(f"title {TITLE}")
 
-    snippets = load_snippets(SNIPPETS_FILE_PATH)
+    snippets_file = load_snippets_file(SNIPPETS_FILE_PATH)
+
+    snippets = load_snippets(snippets_file)
+    print(snippets)
     if not snippets:
         logging.warning("No snippets loaded.")
-        return
-
-    logging.info(f"Snippets loaded: {snippets}")
+    else:
+        logging.info(f"Snippets loaded: {snippets}")
 
     buffer = deque(maxlen=BUFFER_MAX_LEN)
 

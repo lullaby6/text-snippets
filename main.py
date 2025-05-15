@@ -25,7 +25,7 @@ logging.basicConfig(
 
 def panic(msg):
     logging.error(msg)
-    sys.exit()
+    os._exit(0)
 
 def load_snippets_file(path: Path):
     return open(path, "a+", encoding="utf-8")
@@ -94,9 +94,6 @@ def input_thread():
     except Exception as e:
         panic(f"Input thread error: {e}")
 
-def thread_exception_handler(error):
-    panic("Thread excetion handler")
-
 def main():
     global snippets_file, snippets, thread_hook, thread_input
 
@@ -109,8 +106,6 @@ def main():
         logging.warning("No snippets loaded.")
     else:
         logging.info(f"Snippets loaded: {snippets}")
-
-    # threading.excepthook = thread_exception_handler
 
     thread_hook = threading.Thread(target=hook_thread, daemon=True)
     thread_input = threading.Thread(target=input_thread, daemon=True)
